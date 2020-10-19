@@ -18,7 +18,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React R005-Latif
+          Learn React R006-Latif
         </a>
       </header>
     </div>
