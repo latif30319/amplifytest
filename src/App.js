@@ -2,6 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
+
 function App() {
   return (
     <div className="App">
@@ -16,7 +18,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React R004-Latif
+          Learn React R005-Latif
         </a>
       </header>
     </div>
@@ -24,5 +26,6 @@ function App() {
   );
 }
 
-export default App;
+//export default App;
+export default withAuthenticator(App);
 
