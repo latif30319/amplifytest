@@ -25,19 +25,59 @@ app.use(function(req, res, next) {
   next()
 });
 
+  //For invoking APIs from within the lambda function usig HttpRequest with axios library
+  //import axios from 'axios';
+  var axios = require('axios')
+  //Testing with the Star Wars APIs: https://swapi.dev/api/people/
+
+
+
 //Latif
 
 app.get('/people', function(req, res) {
-  // Add your code here
-  const people = [{name: 'John'}, {name: 'Paul'}];
+  // Instead of hard-coding people, get it from the Star Wars API
+  axios.get('https://swapi.dev/api/people').
+  then(response => {
+    res.json({success: 'get call succeed!', 
+    url: req.url,
+    people: response.data.results
+  });
+  }).
+  catch(err =>{
+    res.json({error: true})
+  })
+});
+  
+  //const people = [{name: 'John'}, {name: 'Paul'}];
   //req contains both event and context used in the lambda function
   //req.apiGateway.event; req.apiGateway.context
   //Also, req.body in post events
+/*
+  Used when the response was hard-coded
   res.json({success: 'get call succeed!', 
             url: req.url,
             people
           });
 });
+*/
+
+//Another api (authenticated): https://api.coinlore.com/api/tickers
+app.get('/coins', function(req, res) {
+  // Instead of hard-coding people, get it from the Star Wars API
+  axios.get('https://api.coinlore.com/api/tickers').
+  then(response => {
+    res.json({success: 'get call succeed!', 
+    url: req.url,
+    coins: response.data.data
+  });
+  }).
+  catch(err =>{
+    res.json({error: true})
+  })
+});
+
+
+
 
 /**********************
  * Example get method *
