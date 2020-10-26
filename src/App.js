@@ -12,9 +12,12 @@ function App() {
   async function callApi(){
     try {
       const peopleData = await API.get('mainappapi', '/people');
-      console.log('peopleData: ', peopleData);
       //Once data is back from the API call, update
       updatePeople(peopleData.people);
+      console.log('peopleData==: ', peopleData);  
+      
+      const coinData = await API.get('mainappapi','/coins');
+      console.log('coinData==: ', coinData); 
 
     }
     catch(err) {
@@ -38,5 +41,7 @@ function App() {
   );
 }
 
+// export default App;       this is the original w/o authentication
+//export default App;
 export default withAuthenticator(App);
 
